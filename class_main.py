@@ -1,12 +1,13 @@
 import cv2 as cv
-from matplotlib.rcsetup import validate_any
 import numpy as np
 import json
 
 with open("./labels/new_train.json","r") as new_train_json:
     train_list = json.load(new_train_json)
 
-def get_image(index):
+class LabeledImage:
+    def __init__(self, index):
+        self.index = index
     target_img = train_list[index]
     train_path = f"./100k/train/{target_img['name']}"
     img_read = cv.imread(train_path, cv.IMREAD_COLOR)
