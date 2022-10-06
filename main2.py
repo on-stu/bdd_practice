@@ -1,5 +1,4 @@
 import cv2 as cv
-from matplotlib.rcsetup import validate_any
 import numpy as np
 import json
 
