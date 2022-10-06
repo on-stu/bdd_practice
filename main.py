@@ -2,20 +2,22 @@ import json
 import cv2
 import numpy as np
 
-with open("./labels/val.json", "r") as val_json:
+with open("./labels/val.json","r") as val_json:
     val_list = json.load(val_json)
 
 def get_labeled_image(index):
     target_img = val_list[index]
 
     img_path = f"./100k/val/{target_img['name']}"
-    img_read = cv2.imread(img_path, cv2.IMREAD_COLOR)
+    print(target_img)
+    img_read = cv2.imread(img_path, cv2.IMREAD_COLOR)   
 
     target_labels = target_img['labels']
     for label in target_labels:
         for key, value in label.items():
             if(key == 'box2d'):
                 img_read = cv2.rectangle(img_read, (int(value['x1']), int(value['y1'])), (int(value['x2']), int(value['y2'])), (0,255,0), 3)
+                
                 
             elif(key == 'poly2d'):
                 positions = []
