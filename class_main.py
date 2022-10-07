@@ -18,12 +18,13 @@ class LabledImages():
             self.train_list = json.load(new_train_json)
 
     def get_raw_image(self, index):
-        target_img = self.train_list[index]
-        train_path = f"./100k/train/{target_img['name']}"
+        self.target_img = self.train_list[index]
+        train_path = f"./100k/train/{self.target_img['name']}"
         img = cv2.imread(train_path, cv2.IMREAD_COLOR)
         return img
 
     def draw_labels(self, img, target_labels):
+        target_labels = self.target_img['labels']
         for labels in target_labels:
             img = self.draw_label(img, labels)
         return img
@@ -55,7 +56,7 @@ class LabledImages():
 
 def main():
     test_label_images = LabledImages("./100k/train/", "./labels/new_train.json")
-    val_label_images = LabledImages("./100k/val/", "./labels/val.json")
+    # val_label_images = LabledImages("./100k/val/", "./labels/val.json")
     while True:
         index = input("몇번째??: ")
         if(index == 'quit'):
