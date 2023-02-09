@@ -5,6 +5,8 @@ import json
 with open("./labels/new_train.json","r") as new_train_json:
     train_list = json.load(new_train_json)
 
+print(train_list)
+
 def get_image(index):
     target_img = train_list[index]
     train_path = f"./100k/train/{target_img['name']}"
